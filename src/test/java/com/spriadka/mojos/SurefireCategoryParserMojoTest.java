@@ -5,7 +5,6 @@ import com.spriadka.mojos.mojos.SurefireCategoryParserMojo;
 import junit.framework.Assert;
 import org.apache.maven.execution.DefaultMavenExecutionRequest;
 import org.apache.maven.execution.MavenExecutionRequest;
-import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.project.MavenProject;
