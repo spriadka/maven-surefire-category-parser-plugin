@@ -54,8 +54,14 @@ public class SurefireCategoryParserMojoTest extends AbstractMojoTestCase {
         assertNotNull(pom);
         Assert.assertTrue(pom.exists());
         SurefireCategoryParserMojo surefireCategoryParserMojo = (SurefireCategoryParserMojo) lookupConfiguredMojo("parse-categories", pom);
-        Assert.assertEquals("Mojo should have default values for parameters", MojoConstants.DEFAULT_INCLUDE_CATEGORY, surefireCategoryParserMojo.getIncludeTestCategory());
-        surefireCategoryParserMojo.execute();
+        Assert.assertEquals("Mojo should have default value set for include test category property",
+                MojoConstants.DEFAULT_INCLUDE_CATEGORY, surefireCategoryParserMojo.getIncludeTestCategory());
+        Assert.assertEquals("Mojo should have default value set for exclude test category property",
+                MojoConstants.DEFAULT_EXCLUDE_CATEGORY, surefireCategoryParserMojo.getExcludeTestCategory());
+        Assert.assertEquals("Mojo should have default value set for aggregate include property",
+                MojoConstants.DEFAULT_AGGREGATED_INCLUDE_PROPERTY, surefireCategoryParserMojo.getAggregatedIncludeProperty());
+        Assert.assertEquals("Mojo should have default value set for aggregate exclude property",
+                MojoConstants.DEFAULT_AGGREGATED_EXCLUDE_PROPERTY, surefireCategoryParserMojo.getAggregateExcludeProperty());
     }
 
     private Mojo lookupConfiguredMojo(String goal, File pom) throws Exception
