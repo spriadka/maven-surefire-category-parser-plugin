@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.spriadka.mojos</groupId>
+    <artifactId>surefire-category-parser-demo</artifactId>
+    <version>@pom.version@</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>first</id>
+            <properties>
+                <include>com.spriadka.mojos.Dog</include>
+            </properties>
+        </profile>
+        <profile>
+            <id>second</id>
+            <properties>
+                <include>com.spriadka.mojos.Cow</include>
+                <exclude>com.spriadka.mojos.Dog</exclude>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spriadka.mojos</groupId>
+                <artifactId>surefire-category-parser-mojo</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <includeTestCategory>include</includeTestCategory>
+                    <excludeTestCategory>exclude</excludeTestCategory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>parse-categories</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <groups>${surefire.included.categories}</groups>
+                    <excludedGroups>${surefire.excluded.categories}</excludedGroups>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
