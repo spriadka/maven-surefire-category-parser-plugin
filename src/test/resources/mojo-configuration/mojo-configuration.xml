@@ -15,6 +15,8 @@
                 <configuration>
                     <includeTestCategory>include</includeTestCategory>
                     <excludeTestCategory>exclude</excludeTestCategory>
+                    <aggregatedIncludeProperty>aggregated-include</aggregatedIncludeProperty>
+                    <aggregatedExcludeProperty>aggregated-exclude</aggregatedExcludeProperty>
                 </configuration>
                 <executions>
                     <execution>

@@ -20,14 +20,14 @@
         <profile>
             <id>first</id>
             <properties>
-                <include>com.spriadka.mojos.Dog</include>
+                <test.included.category>com.spriadka.mojos.Dog</test.included.category>
             </properties>
         </profile>
         <profile>
             <id>second</id>
             <properties>
-                <include>com.spriadka.mojos.Cow</include>
-                <exclude>com.spriadka.mojos.Dog</exclude>
+                <test.included.category>com.spriadka.mojos.Cow</test.included.category>
+                <test.excluded.category>com.spriadka.mojos.Dog</test.excluded.category>
             </properties>
         </profile>
     </profiles>
@@ -38,10 +38,6 @@
                 <groupId>com.spriadka.mojos</groupId>
                 <artifactId>surefire-category-parser-mojo</artifactId>
                 <version>1.0-SNAPSHOT</version>
-                <configuration>
-                    <includeTestCategory>include</includeTestCategory>
-                    <excludeTestCategory>exclude</excludeTestCategory>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>

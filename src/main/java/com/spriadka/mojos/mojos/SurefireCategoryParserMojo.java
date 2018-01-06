@@ -27,7 +27,7 @@ public class SurefireCategoryParserMojo extends AbstractMojo {
     private String aggregatedIncludeProperty;
 
     @Parameter(defaultValue = MojoConstants.DEFAULT_AGGREGATED_EXCLUDE_PROPERTY)
-    private String aggregateExcludeProperty;
+    private String aggregatedExcludeProperty;
 
     @Parameter(defaultValue = "${project}", readonly = true)
     private MavenProject mavenProject;
@@ -45,7 +45,7 @@ public class SurefireCategoryParserMojo extends AbstractMojo {
         String parsedIncludeCategoryProperty = includedCategories.stream().filter(Objects::nonNull).collect(Collectors.joining(","));
         String parsedExcludedCategoryProperty = excludedCategories.stream().filter(Objects::nonNull).collect(Collectors.joining(","));
         mavenProject.getProperties().setProperty(aggregatedIncludeProperty, parsedIncludeCategoryProperty);
-        mavenProject.getProperties().setProperty(aggregateExcludeProperty, parsedExcludedCategoryProperty);
+        mavenProject.getProperties().setProperty(aggregatedExcludeProperty, parsedExcludedCategoryProperty);
         getLog().info(String.format("Included categories: [%s]", parsedIncludeCategoryProperty));
         getLog().info(String.format("Excluded categories: [%s]", parsedExcludedCategoryProperty));
     }
@@ -59,7 +59,7 @@ public class SurefireCategoryParserMojo extends AbstractMojo {
     }
 
     public String getAggregateExcludeProperty() {
-        return aggregateExcludeProperty;
+        return aggregatedExcludeProperty;
     }
 
     public String getExcludeTestCategory() {

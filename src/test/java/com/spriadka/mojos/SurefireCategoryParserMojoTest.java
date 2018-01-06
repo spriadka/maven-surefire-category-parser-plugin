@@ -2,7 +2,7 @@ package com.spriadka.mojos;
 
 import com.spriadka.mojos.mojos.MojoConstants;
 import com.spriadka.mojos.mojos.SurefireCategoryParserMojo;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.apache.maven.execution.DefaultMavenExecutionRequest;
 import org.apache.maven.execution.MavenExecutionRequest;
 import org.apache.maven.plugin.Mojo;
@@ -42,11 +42,15 @@ public class SurefireCategoryParserMojoTest extends AbstractMojoTestCase {
         SurefireCategoryParserMojo surefireCategoryParserMojo = new SurefireCategoryParserMojo();
         configureMojo(surefireCategoryParserMojo, extractPluginConfiguration("surefire-category-parser-mojo", pom));
         Assert.assertNotNull("Mojo's include category parameter should be configured", surefireCategoryParserMojo.getIncludeTestCategory());
-        Assert.assertTrue("Mojo's include category should be configured accordingly", !surefireCategoryParserMojo.getIncludeTestCategory()
-                .equals(MojoConstants.DEFAULT_INCLUDE_CATEGORY));
+        Assert.assertEquals("Mojo's include category parameter should be equal to the one specified in pom", "include", surefireCategoryParserMojo.getIncludeTestCategory());
         Assert.assertNotNull("Mojo's exclude category parameter should be configured", surefireCategoryParserMojo.getExcludeTestCategory());
-        Assert.assertTrue("Mojo's exclude category should be configured accordingly", !surefireCategoryParserMojo.getExcludeTestCategory()
-                .equals(MojoConstants.DEFAULT_EXCLUDE_CATEGORY));
+        Assert.assertEquals("Mojo's exclude category parameter should be equal to the one specified in pom", "exclude", surefireCategoryParserMojo.getExcludeTestCategory());
+        Assert.assertNotNull("Mojo's aggregated include property parameter should be configured", surefireCategoryParserMojo.getAggregatedIncludeProperty());
+        Assert.assertEquals("Mojo's aggregated include property should be equal to the one specified in pom", "aggregated-include",
+                surefireCategoryParserMojo.getAggregatedIncludeProperty());
+        Assert.assertNotNull("Mojo's aggregated exclude property parameter should be configured", surefireCategoryParserMojo.getExcludeTestCategory());
+        Assert.assertEquals("Mojo's aggregated exclude property should be equal to the one specified in pom", "aggregated-exclude",
+                surefireCategoryParserMojo.getAggregateExcludeProperty());
     }
 
     public void testShouldUseDefaultValuesIfNotConfigured() throws Exception {
